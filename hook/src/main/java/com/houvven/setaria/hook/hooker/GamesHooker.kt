@@ -8,7 +8,7 @@ import org.luckypray.dexkit.DexKitBridge
 
 class GamesHooker : YukiBaseHooker() {
 
-    private val dexkit = DexKitBridge.create(appInfo.sourceDir)
+    private val dexkit by lazy { DexKitBridge.create(appInfo.sourceDir) }
 
     override fun onHook() {
         disableSplashVideo()
@@ -22,6 +22,7 @@ class GamesHooker : YukiBaseHooker() {
                 returnType(BooleanType)
                 usingStrings("checkShowSplash", "DesktopSpaceMainFragment")
             }
-        }.single().getMethodInstance(appClassLoader ?: error("appClassLoader is null")).hook().replaceToFalse()
+        }.single().getMethodInstance(appClassLoader ?: error("appClassLoader is null")).hook()
+            .replaceToFalse()
     }
 }
