@@ -5,6 +5,7 @@ import com.highcapable.yukihookapi.hook.factory.configs
 import com.highcapable.yukihookapi.hook.factory.encase
 import com.highcapable.yukihookapi.hook.xposed.proxy.IYukiHookXposedInit
 import com.houvven.setaria.hook.hooker.GamesHooker
+import com.houvven.setaria.hook.hooker.LauncherHooker
 
 
 @InjectYukiHookWithXposed(modulePackageName = "com.houvven.setaria")
@@ -23,5 +24,6 @@ object HookEntry : IYukiHookXposedInit {
 
     override fun onHook() = encase {
         loadApp("com.oplus.games", GamesHooker())
+        loadApp("com.android.launcher", LauncherHooker())
     }
 }
