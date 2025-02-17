@@ -1,10 +1,12 @@
 package com.houvven.setaria.hook.hooker
 
 import android.view.View
+import android.widget.TextView
 import com.highcapable.yukihookapi.hook.entity.YukiBaseHooker
 import com.highcapable.yukihookapi.hook.factory.constructor
 import com.highcapable.yukihookapi.hook.factory.field
 import com.highcapable.yukihookapi.hook.factory.method
+import com.highcapable.yukihookapi.hook.type.android.TextViewClass
 import com.houvven.setaria.hook.utils.RClassSigned
 
 class LauncherHooker : YukiBaseHooker() {
@@ -15,6 +17,7 @@ class LauncherHooker : YukiBaseHooker() {
     override fun onHook() {
         removeRecentViewClearBtn()
         removeAppIconBadge()
+        removeCardName()
     }
 
     private fun removeRecentViewClearBtn() {
@@ -31,5 +34,15 @@ class LauncherHooker : YukiBaseHooker() {
         "com.android.launcher3.icons.BitmapInfo".toClass().method {
             name = "applyFlags"
         }.hook().replaceTo(Unit)
+    }
+
+    private fun removeCardName() {
+        val cardNameViewId = rIdClass.field { name = "card_name" }.get(null).int()
+        TextViewClass.constructor().hookAll().after {
+            val view = instance<TextView>()
+            if (view.id == cardNameViewId) {
+                view.visibility = View.GONE
+            }
+        }
     }
 }
