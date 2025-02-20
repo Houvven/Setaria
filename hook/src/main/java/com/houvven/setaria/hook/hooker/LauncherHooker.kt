@@ -1,13 +1,13 @@
 package com.houvven.setaria.hook.hooker
 
 import android.view.View
-import com.highcapable.yukihookapi.hook.entity.YukiBaseHooker
 import com.highcapable.yukihookapi.hook.factory.constructor
 import com.highcapable.yukihookapi.hook.factory.field
 import com.highcapable.yukihookapi.hook.factory.method
+import com.houvven.setaria.hook.SetariaBaseHooker
 import com.houvven.setaria.hook.utils.RClassSigned
 
-class LauncherHooker : YukiBaseHooker() {
+class LauncherHooker : SetariaBaseHooker() {
 
     private val rIdClass by lazy { "com.android.launcher3.${RClassSigned.ID}".toClass() }
     private val pressFeedbackButtonClass by lazy { "com.android.launcher.views.PressFeedbackButton".toClass() }

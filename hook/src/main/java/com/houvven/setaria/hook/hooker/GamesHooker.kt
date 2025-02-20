@@ -1,12 +1,12 @@
 package com.houvven.setaria.hook.hooker
 
-import com.highcapable.yukihookapi.hook.entity.YukiBaseHooker
 import com.highcapable.yukihookapi.hook.type.android.IntentClass
 import com.highcapable.yukihookapi.hook.type.java.BooleanType
+import com.houvven.setaria.hook.SetariaBaseHooker
 import org.luckypray.dexkit.DexKitBridge
 
 
-class GamesHooker : YukiBaseHooker() {
+class GamesHooker : SetariaBaseHooker() {
 
     private val dexkit by lazy { DexKitBridge.create(appInfo.sourceDir) }
 
