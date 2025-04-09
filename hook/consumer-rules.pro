@@ -1,0 +1,1 @@
+-keep class com.houvven.setaria.hook.** { *; }
